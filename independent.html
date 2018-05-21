@@ -1,0 +1,77 @@
+---
+title: Filmmaker Paul Hartmann
+layout: defaultnav
+
+#
+# The content of the page is defined below.
+# modify as you please.
+#
+sections:
+  - vita:
+      image: landscape.jpg
+      title: Vita
+      text: >
+        This is Pauls Vita as independent filmmaker. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      downloads:
+        - text: Download Vita
+          filename: PaulHartmannVita.pdf
+          path:
+        - text: Download Motivational Letter
+          filename: PaulHartmannMotivation.pdf
+          path:
+  - reel:
+      title: Reel
+      image: landscape.jpg
+      reels:
+        # ratios must be either one of 21by9, 16by9, 4by3 or 1by1
+        # ``class="embed-responsive-item"`` needs to be added to the iframe tag manually
+        - embed: <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/121218625" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          ratio: 16by9
+        - embed: <iframe class="embed-responsive-item" width='960' height='720' scrolling='no' src='https://video.filmmakers.de/iframe.php?vid=paul-hartmann&amp;resize=1&amp;layout=5&amp;vq=h' allowfullscreen=''></iframe>
+          ratio: 4by3
+  - blog:
+      image: landscape.jpg
+      title: Blog
+      text: >
+        I write this Blog because blargh. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+  - contact:
+      image: landscape.jpg
+      title: Contact
+      contacts:
+        - name: You can write to
+          email: hallowiegeht@ichwillpaul.de
+
+---
+
+<div class="container">
+  <nav id="mynav" class="navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand font-weight-light" href="#">Paul Hartmann, Filmmaker</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topnav">
+      <ul class="navbar-nav mr-auto">
+        {% for section in page.sections %}
+          {% for keyvalue in section %}
+          <li class="nav-item">
+            <a class="nav-link" href="#{{ keyvalue[1].title | slugify: pretty }}">{{ keyvalue[1].title }}</a>
+          </li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<main role="main">
+
+  {% for section in page.sections %}
+    {% for keyvalue in section %}
+      {% capture incfile %}independent/{{ keyvalue[0] | append: ".html" }}{% endcapture %}
+      {% assign params=keyvalue[1] %}
+      {% include {{ incfile }} params=params %}
+    {% endfor %}
+  {% endfor %}
+
+</main>

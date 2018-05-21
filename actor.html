@@ -1,0 +1,109 @@
+---
+title: Actor Paul Hartmann
+layout: defaultnav
+
+
+#
+# The content of the page is defined below.
+# modify as you please.
+#
+sections:
+  - vita:
+      image: landscape.jpg
+      title: Vita
+      productions:
+      - 2017:
+        - title: Big Film
+          annotation: Big Regisseur
+        - title: Bigger Film
+          annotation: Blargh.
+      - 2016:
+        - title: Something Cool
+          annotation: Woah, such movie.
+      text: >
+        This is Pauls Vita. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      table_data:
+        - Jahrgang:                1998
+        - Spielalter:              17-21
+        - Größe:                   186 cm
+        - Haarfarbe:               braun
+        - Augenfarbe:              grün-braun
+        - Wohnort:                 Kassel
+        - Muttersprache:           deutsch
+        - Ethn. Erscheinungsbild:  mitteleuropäisch
+        - Fremdsprache:            englisch
+        - Sportarten:              Klettern, Slackline
+      downloads:
+        - text: Download Vita
+          filename: PaulHartmannVita.pdf
+          path:
+        - text: Download Motivational Letter
+          filename: PaulHartmannMotivation.pdf
+          path:
+  - images:
+      title: Images of Paul
+      image:
+      images:
+        - https://loremflickr.com/4150/3650/portrait?random=1&lock=1
+        - https://loremflickr.com/1780/2580/portrait?random=2&lock=2
+        - https://loremflickr.com/2160/4490/portrait?random=3&lock=3
+        - https://loremflickr.com/3970/1460/portrait?random=4&lock=4
+        - https://loremflickr.com/1810/4330/portrait?random=5&lock=5
+        - https://loremflickr.com/3020/2710/portrait?random=6&lock=6
+        - https://loremflickr.com/2050/2200/portrait?random=7&lock=7
+        - https://loremflickr.com/2250/3710/portrait?random=8&lock=8
+  - reel:
+      title: Reel
+      image: landscape.jpg
+      reels:
+        # ratios must be either one of 21by9, 16by9, 4by3 or 1by1
+        # ``class="embed-responsive-item"`` needs to be added to the iframe tag manually
+        - embed: <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/121218625" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          ratio: 16by9
+        - embed: <iframe class="embed-responsive-item" width='960' height='720' scrolling='no' src='https://video.filmmakers.de/iframe.php?vid=paul-hartmann&amp;resize=1&amp;layout=5&amp;vq=h' allowfullscreen=''></iframe>
+          ratio: 4by3
+  - contact:
+      title: Contact
+      image: landscape.jpg
+      contacts:
+        - name: BAHL FOR ACTORS
+          tel_pretty: 030 - 488 27 545
+          tel_full: +493048827545
+          email: info@bahl-for-actors.com
+          web_pretty: bahl-for-actors.de
+          web_full: https://bahl-for-actors.com
+
+---
+
+<nav id="mynav" class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand font-weight-light" href="#">Paul Hartmann, Actor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topnav" aria-controls="topnav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="topnav">
+      <ul class="navbar-nav mr-auto">
+        {% for section in page.sections %}
+          {% for keyvalue in section %}
+          <li class="nav-item">
+            <a class="nav-link" href="#{{ keyvalue[1].title | slugify: pretty }}">{{ keyvalue[1].title }}</a>
+          </li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main role="main">
+
+  {% for section in page.sections %}
+    {% for keyvalue in section %}
+      {% capture incfile %}actor/{{ keyvalue[0] | append: ".html" }}{% endcapture %}
+      {% assign params=keyvalue[1] %}
+      {% include {{ incfile }} params=params %}
+    {% endfor %}
+  {% endfor %}
+
+</main>

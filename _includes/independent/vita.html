@@ -1,0 +1,18 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3>{{ params.title }}</h3>
+    <div class="row">
+      <div class="col">
+        <p>{{ params.text | markdownify }}</p>
+      </div>
+      <div class="col-12">
+        <p>
+          {% for button in params.downloads %}
+            <a class="btn btn-primary mt-1 mb-1" download="{{ button.filename }}" href="{{ button.path | append: button.filename }}">{{ button.text }}</a>
+          {% endfor %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

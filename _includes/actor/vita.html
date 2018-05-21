@@ -1,0 +1,48 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3 class="card-title">{{ params.title }}</h3>
+    <div class="row">
+      <div class="col">
+        <dl>
+          {% for productions in params.productions %}
+            {% for year in productions %}
+              <dt class="lead">{{ year[0] }}</dt>
+              <dd>
+                {% for production in year[1] %}
+                  <p>
+                    <h5>{{ production.title }}</h5>
+                    <small class="font-weight-lght">{{ production.annotation }}</small>
+                  </p>
+                {% endfor %}
+              </dd>
+              <br>
+            {% endfor %}
+          {% endfor %}
+        </dl>
+      </div>
+      <div class="col">
+        <table class="table table-sm table-responsive">
+          <tbody>
+            {% for info in params.table_data %}
+              {% for keyvalue in info %}
+                <tr>
+                  <th scope="row">{{ keyvalue[0] }}</th>
+                  <td>{{ keyvalue[1] }}</td>
+                </tr>
+              {% endfor %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        {{ params.text | markdownify }}
+      </div>
+      <div class="col">
+        {% for button in params.downloads %}
+          <a class="btn btn-primary mt-1 mb-1" download="{{ button.filename }}" href="{{ button.path | append: button.filename }}">{{ button.text }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3>{{ params.title }}</h3>
+    {% for contact in params.contacts %}
+      <p>{{ contact.name }}
+        <br><a href="tel:{{ contact.tel_full }}" target="_blank" rel="noreferrer noopener">{{ contact.tel_pretty }}</a>
+        <br><a href="mailto:{{ contact.email }}" target="_blank" rel="noreferrer noopener">{{ contact.email }}</a>
+        <br><a href="{{ contact.web_full }}" target="_blank" rel="noreferrer noopener">{{ contact.web_pretty }}</a>
+      </p>
+    {% endfor %}
+  </div>
+</section>

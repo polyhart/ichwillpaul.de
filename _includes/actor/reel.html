@@ -1,0 +1,16 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3>{{ params.title }}</h3>
+      <div class="card-columns card-columns-reel">
+        {% for reel in params.reels %}
+          <div class="card embed-responsive embed-responsive-{{ reel.ratio }}">
+            {{ reel.embed }}
+          </div>
+        {% endfor %}
+      </div>
+    {% for button in params.downloads %}
+      <a class="btn btn-secondary" download="{{ button.filename }}" href="{{ button.path | append: button.filename }}" ">{{ button.text }}</a>
+    {% endfor %}
+  </div>
+</section>

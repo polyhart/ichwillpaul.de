@@ -1,0 +1,19 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3>{{ params.title }}</h3>
+    {% for contact in params.contacts %}
+      <p>{{ contact.name }}
+        {% if contact.tel_full and contact.tel_pretty %}
+          <br><a href="tel:{{ contact.tel_full }}">{{ contact.tel_pretty }}</a>
+        {% endif %}
+        {% if contact.email %}
+          <br><a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
+        {% endif %}
+        {% if contact.web.full and contact.web_pretty %}
+          <br><a href="{{ contact.web_full }}">{{ contact.web_pretty }}</a>
+        {% endif %}
+      </p>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,16 @@
+<section id="{{ params.title | slugify: 'pretty' }}" class="card bg-dark text-white">
+  <div class="card-img-static w-100 h-100" style="background-image: url('{{ params.image }}');"></div>
+  <div class="card-img-stoverlay card-body container">
+    <h3>{{ params.title }}</h3>
+      <div class="imgreel">
+        {% for img in params.images %}
+          <a href="#{{ params.title | slugify: 'pretty' }}-{{ forloop.index }}" class="m-4" style="background-image: url('{{ img }}');">
+            <img src="{{ img }}" alt="An image of Paul">
+          </a>
+        {% endfor %}
+      </div>
+    {% for button in params.downloads %}
+      <a class="btn btn-secondary" download="{{ button.filename }}" href="{{ button.path | append: button.filename }}" ">{{ button.text }}</a>
+    {% endfor %}
+  </div>
+</section>
